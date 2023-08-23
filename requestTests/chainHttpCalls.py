@@ -29,7 +29,7 @@ def __getFullPathMessageList():
 
 
 def __getExceptionPlan():
-    exceptionPlanPath = Path(getTestPlanCsvFolderPath(), "exceptionPlan.csv")
+    exceptionPlanPath = Path(getTestPlanCsvFolderPath(), "exceptionFailures.csv")
 
 
 def __main():
