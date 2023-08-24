@@ -1,8 +1,5 @@
-import time
-from pathlib import Path
 from typing import List
 
-from references.path_reference import getTestPlanCsvFolderPath
 from requestTests.httpCalls import sendTwilioRequest, convertResponseToUtf8
 
 
@@ -28,11 +25,9 @@ def __getFullPathMessageList():
             "Vou querer um guaraná e dois sucos de laranja", "Pix"]
 
 
-def __getExceptionPlan():
-    exceptionPlanPath = Path(getTestPlanCsvFolderPath(), "exceptionFailures.csv")
-
-
 def __main():
+    # plan = __getDialogflowMessagesPlan()
+    # inputMessages, expectedMessages = plan["inputMessages"], plan["expectedMessages"]
     messageList = __getSignedInMessageList()
     results = chainedHttpCalls(messageList, 3500)
     return

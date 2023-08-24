@@ -1,6 +1,6 @@
 Stage;Input;ExpectedOutput
 _welcome;Oii;Olá! Bem-vindo à Pizza do Bill! Funcionamos das 17h às 22h.\n Cardápio de pizzas:\n- Calabresa - R$17.50\n- Frango - R$18.90\n- Portuguesa - R$13.99\n- Margherita - R$15.50\n- Quatro Queijos - R$16.90\n- Pepperoni - R$19.99\n. \nQual pizza você vai querer?
-_pizzaChoice;Vou querer uma pizza meia calabresa meia margherita e uma pizza de frango; Maravilha! Meia calabresa margherita, uma inteira frango então. Você vai querer alguma bebida?
-_drinkConfirmation;Sim; Cardápio de bebidas:\n- Coca-cola - R$5.99\n- Guaraná - R$4.99\n- Suco de laranja - R$6.50
-_drinkChoice;Vou querer um guaraná e dois sucos de laranja; Vai ser 1 x Pizza meio calabresa meio margherita (R$16.50), 1 x Pizza de frango (R$18.90), 1 x Guaraná (R$4.99), totalizando R$40.39. Qual vai ser a forma de pagamento? (pix/cartão/dinheiro)
+_pizzaChoice;Vou querer uma pizza meia calabresa meia margherita e uma pizza de frango;Maravilha! Meia calabresa margherita, uma inteira frango então. Você vai querer alguma bebida?
+_drinkConfirmation;Sim;Cardápio de bebidas:\n- Coca-cola - R$5.99\n- Guaraná - R$4.99\n- Suco de laranja - R$6.50
+_drinkChoice;Vou querer um guaraná e dois sucos de laranja;Vai ser 1 x Pizza meio calabresa meio margherita (R$16.50), 1 x Pizza de frango (R$18.90), 1 x Guaraná (R$4.99), totalizando R$40.39. Qual vai ser a forma de pagamento? (pix/cartão/dinheiro)
 _paymentChoice;Pix;Tudo certo então! O pedido estará indo para a sua casa em breve!

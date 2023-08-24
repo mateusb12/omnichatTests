@@ -19,6 +19,7 @@ def getTwilioBoilerPlate(body: str = "Oii"):
         "ApiVersion": "2010-04-01"
     }
 
+
 def getDialogflowBoilerPlate(body: str = "Oii"):
     return json.dumps({
         "responseId": "133bb879-bdbb-4151-a006-749dfb52857f-2316b108",
@@ -66,4 +67,3 @@ def getDialogflowBoilerPlate(body: str = "Oii"):
         },
         "session": "projects/pizzadobill-rpin/locations/global/agent/sessions/1b7b59ab-4d7f-9187-9c63-2b8ad5255a0d"
     })
-
