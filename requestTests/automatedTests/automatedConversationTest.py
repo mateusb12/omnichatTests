@@ -19,6 +19,7 @@ def runTestPlan(testPlan: pd.DataFrame):
         testResult = "Passed" if textResponse == expected else "Failed"
         result_color = "1;31" if testResult == "Failed" else "1;32"
         print(colorize(f"Test result: {testResult}", result_color))
+        print("")
     return
 
 
