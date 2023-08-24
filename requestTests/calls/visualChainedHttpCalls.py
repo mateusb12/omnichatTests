@@ -1,6 +1,7 @@
 from typing import List
 
-from requestTests.calls.httpCalls import sendTwilioRequest, convertResponseToUtf8
+from requestTests.automation.testPlanLoader import getSignupPlan
+from requestTests.calls.sendHttpCalls import sendTwilioRequest, convertResponseToUtf8
 
 
 def chainedHttpCalls(messageList: List[str], delay: int):
@@ -26,7 +27,7 @@ def __getFullPathMessageList():
 
 
 def __main():
-    # plan = __getDialogflowMessagesPlan()
+    plan = getSignupPlan()
     # inputMessages, expectedMessages = plan["inputMessages"], plan["expectedMessages"]
     messageList = __getSignedInMessageList()
     results = chainedHttpCalls(messageList, 3500)

@@ -7,7 +7,7 @@ def getMainFolderPath() -> Path:
 
 
 def getTestPlanCsvFolderPath() -> Path:
-    return getMainFolderPath() / 'requestTests/testPlans'
+    return getMainFolderPath() / 'testPlans'
 
 
 def __main():

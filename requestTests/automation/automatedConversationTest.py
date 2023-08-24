@@ -1,11 +1,11 @@
 import pytest
-from requestTests.automation.testPlanLoader import getDialogflowMessagesPlan
+from requestTests.automation.testPlanLoader import getDialogflowMessagesPlan, getSignupPlan
 from requestTests.automation.testUtils import colorize, less_strict_comparison
-from requestTests.calls.httpCalls import sendTwilioRequest, convertResponseToUtf8
+from requestTests.calls.sendHttpCalls import sendTwilioRequest, convertResponseToUtf8
 
 
 def test_run_plan():
-    plan = getDialogflowMessagesPlan()
+    plan = getSignupPlan()
     inputMessageList, expectedMessageList = plan["inputMessages"], plan["expectedMessages"]
     combinedMessages = list(zip(inputMessageList, expectedMessageList))
     for actual, expected in combinedMessages:

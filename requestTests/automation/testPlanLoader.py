@@ -18,6 +18,12 @@ def getDialogflowMessagesPlan():
             "expectedMessages": dialogflowPlan["ExpectedOutput"].tolist()}
 
 
+def getSignupPlan():
+    signupPlan = getTestPlan("signupPlan.csv")
+    return {"inputMessages": signupPlan["Input"].tolist(),
+            "expectedMessages": signupPlan["ExpectedOutput"].tolist()}
+
+
 def __main():
     plan = getDialogflowMessagesPlan()
     inputMessages, expectedMessages = plan["inputMessages"], plan["expectedMessages"]
