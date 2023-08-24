@@ -1,6 +1,6 @@
 from typing import List
 
-from requestTests.httpCalls import sendTwilioRequest, convertResponseToUtf8
+from requestTests.calls.httpCalls import sendTwilioRequest, convertResponseToUtf8
 
 
 def chainedHttpCalls(messageList: List[str], delay: int):

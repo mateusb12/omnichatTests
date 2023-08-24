@@ -1,8 +1,7 @@
 import html
-import json
 import requests
 import xml.etree.ElementTree as ElementTree
-from requestTests.requisitionBoilerPlate import getTwilioBoilerPlate, getDialogflowBoilerPlate
+from requestTests.calls.requisitionBoilerPlate import getTwilioBoilerPlate, getDialogflowBoilerPlate
 
 
 def sendTwilioRequest(url: str = "http://localhost:3000/twilioSandbox", body: str = "Oii"):
