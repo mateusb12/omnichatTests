@@ -65,7 +65,7 @@ def get_dialogflow_message_example():
     }
 
 
-class MessageConverterObject:
+class MessageConverter:
     def __init__(self):
         self._from = ""
         self.phoneNumber = ""
@@ -96,7 +96,8 @@ class MessageConverterObject:
             'from': social_network,
             'phoneNumber': userNumber,
             'body': receivedMessage,
-            "time": datetime.now().strftime("%H:%M"),
+            "time":datetime.now().strftime("%Y-%m-%d %H:%M"),
+
         }
 
     @staticmethod
@@ -105,13 +106,13 @@ class MessageConverterObject:
             'sender': "ChatBot",
             'phoneNumber': userNumber,
             'body': dialogflowMessage,
-            "time": datetime.now().strftime("%H:%M"),
+            "time": datetime.now().strftime("%Y-%m-%d %H:%M"),
         }
 
 
 def __main():
-    print(MessageConverterObject.convert_user_message(json.dumps(get_user_message_example())))
-    print(MessageConverterObject.convert_dialogflow_message(json.dumps(get_dialogflow_message_example())))
+    print(MessageConverter.convert_user_message(json.dumps(get_user_message_example())))
+    print(MessageConverter.convert_dialogflow_message(json.dumps(get_dialogflow_message_example())))
 
 
 if __name__ == '__main__':
