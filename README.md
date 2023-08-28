@@ -49,7 +49,14 @@ Follow the steps below to set up and test the TwilioPizza API.
 
 ![Step 7 Image](docs/pictures/step_7.png)
 
-### 8. **Run the Test** 🚀
+### 8. **Edit Test Plan (optional)** 📝
+   As you can see, the `getSignupPlan()` function basically loads a .csv file with the test plan.
+   You can edit it if you want.
+
+![Step Bonus Image](docs/pictures/signup_function.png)
+![Step Bonus2 Image](docs/pictures/signup_csv.png)
+
+### 9. **Run the Test** 🚀
    Execute the test.
 ![Step 8 Image](docs/pictures/step_8.png)
 
