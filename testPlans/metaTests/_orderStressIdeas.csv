@@ -1,0 +1,6 @@
+testName;singlePizza;compoundPizza;singlePizzaOrder;compoundPizzaOrder;pluralPizza;pizzaSentence;singleDrink;compoundDrinkOrder;pluralDrinks;drinkSentence;specialRequests;outOfHours;invalidInput;paymentMethod;discountOrOffer;
+test001;False;True;False;True;False;Vou querer uma pizza meia calabresa meia margherita e uma pizza de frango;False;True;True;Vou querer um guaraná e dois sucos de laranja;False;False;False;Pix;False;
+test002;True;False;True;False;True;Vou querer duas pizzas de calabresa;True;False;True;Vou querer dois guaranás;False;False;False;Dinheiro;False;
+test003;True;False;True;False;False;Vou querer uma pizza de margherita;True;False;False;Vou querer um suco de laranja;True;False;False;Cartão;True;
+test004;False;True;True;False;False;Vou querer uma pizza meia frango meia portuguesa;False;True;False;Vou querer um guaraná e um suco de laranja;False;True;False;Pix;False;
+test005;True;False;True;False;False;Vou querer uma pizza de quatro queijos;True;False;False;Vou querer uma coca-cola;False;False;True;Dinheiro;False;
