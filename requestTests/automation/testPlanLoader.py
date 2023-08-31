@@ -12,16 +12,26 @@ def getTestPlan(filename: str):
     return df
 
 
+def formatTestPlanToDict(df: pd.DataFrame) -> dict:
+    """
+    Format a given DataFrame into the desired dictionary format.
+    """
+    return {
+        "inputMessages": df["Input"].tolist(),
+        "expectedMessages": df["ExpectedOutput"].tolist()
+    }
+
+
 def getDialogflowMessagesPlan():
-    dialogflowPlan = getTestPlan("dialogflowPlan.csv")
-    return {"inputMessages": dialogflowPlan["Input"].tolist(),
-            "expectedMessages": dialogflowPlan["ExpectedOutput"].tolist()}
+    return formatTestPlanToDict(getTestPlan("dialogflowPlan.csv"))
 
 
 def getSignupPlan():
-    signupPlan = getTestPlan("signupPlan.csv")
-    return {"inputMessages": signupPlan["Input"].tolist(),
-            "expectedMessages": signupPlan["ExpectedOutput"].tolist()}
+    return formatTestPlanToDict(getTestPlan("signupPlan.csv"))
+
+
+def getFullPathPlan():
+    return formatTestPlanToDict(getTestPlan("fullPathPlan.csv"))
 
 
 def __main():

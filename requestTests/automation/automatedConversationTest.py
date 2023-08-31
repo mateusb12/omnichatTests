@@ -1,11 +1,11 @@
 import pytest
-from requestTests.automation.testPlanLoader import getDialogflowMessagesPlan, getSignupPlan
+from requestTests.automation.testPlanLoader import getDialogflowMessagesPlan, getSignupPlan, getFullPathPlan
 from requestTests.automation.testUtils import colorize, less_strict_comparison
 from requestTests.calls.sendHttpCalls import sendTwilioRequest, convertResponseToUtf8
 
 
 def getCurrentPlan():
-    return getSignupPlan()
+    return getFullPathPlan()
 
 
 def test_run_plan():
