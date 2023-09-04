@@ -3,6 +3,7 @@ from __future__ import annotations
 import tkinter as tk
 from tkinter import ttk
 
+from requestTests.calls.sendHttpCalls import sendTwilioRequest, convertResponseToUtf8
 from visualTests._option_frame import OptionFrame
 
 
@@ -62,11 +63,11 @@ class MainUI(tk.Tk):
 
     def on_send_click(self):
         user_message = self.user_input.get("1.0", 'end-1c')
-        conversation_text_field_content = self.conversation_text_field.get("1.0", 'end-1c')
-        is_empty = conversation_text_field_content == ""
-        new_insertion = f"\n\nUser: {user_message}" if not is_empty else f"User: {user_message}"
-        self.conversation_text_field.insert(tk.END, new_insertion)
         self.user_input.delete(1.0, tk.END)
+        self.conversation_text_field.insert(tk.END, f"User: {user_message}\n\n")
+        rawResponse = sendTwilioRequest(body=user_message)
+        botResponse = convertResponseToUtf8(rawResponse)
+        self.conversation_text_field.insert(tk.END, f"Bot: {botResponse}\n\n")
 
     def on_main_dropdown_change(self, event: tk.Event):
         chosen_option = self.main_dropdown.get()
