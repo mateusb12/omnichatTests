@@ -76,6 +76,10 @@ class MainUI(tk.Tk):
         if chosen_option == "2- Pizza Choose":
             pizzaComponent = self.option_frame.pizza_component
             pizzaComponent.update_pizza_text()
+        elif chosen_option == "3- Drink Choose":
+            accept_drink_value = self.option_frame.accept_drink_dropdown.dropdowns[0].get()
+            self.user_input.delete(1.0, tk.END)
+            self.user_input.insert(tk.END, accept_drink_value)
         else:
             format_str = self.MAIN_DROPDOWN_FORMATS.get(chosen_option, "{}")
             formatted_message = format_str.format(default_message)
