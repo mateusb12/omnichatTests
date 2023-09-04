@@ -12,6 +12,9 @@ class DropdownComponent:
         self.user_input = user_input
         self.message_format = message_format
 
+        self.frame = ttk.Frame(parent)
+        self.frame.pack(pady=10)
+
         label = ttk.Label(parent, text=label_text)
         label.pack(pady=10)
 

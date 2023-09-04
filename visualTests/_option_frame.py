@@ -11,6 +11,8 @@ class OptionFrame(ttk.Frame):
 
     def __init__(self, parent, user_input: tk.Text):
         super().__init__(parent)
+        self.drink_dropdown = None
+        self.accept_drink_dropdown = None
         self.user_input = user_input
         self.pizza_dropdown_values = []
         self.second_pizza_dropdown = None
@@ -34,16 +36,29 @@ class OptionFrame(ttk.Frame):
         elif chosen_option == "3- Drink Choose":
             drink_options = ["Coca", "Guaraná", "Fanta"]
             default_message = drink_options[0]
-            accept_drink = DropdownComponent(self, "Accept Drink:", ["Sim", "Não"],
-                                             "{}", self.user_input)
-            drink_dropdown = DropdownComponent(self, "Select Drink:", drink_options,
-                                               "Vou querer uma {}", self.user_input)
+
+            self.accept_drink_dropdown = DropdownComponent(self, "Accept Drink:", ["Sim", "Não"],
+                                                           "{}", self.user_input,
+                                                           callback=self.toggle_drink_dropdown)
+            self.drink_dropdown = DropdownComponent(self, "Select Drink:", drink_options,
+                                                    "Vou querer uma {}", self.user_input)
+            self.drink_dropdown.dropdowns[0].pack_forget()
         elif chosen_option == "4- Finish":
             payment_options = ["Cartão", "Dinheiro", "Pix"]
             default_message = payment_options[0]
             DropdownComponent(self, "Payment Method:", payment_options,
                               "Vou pagar com {}", self.user_input)
         return default_message
+
+    def toggle_drink_dropdown(self, event):
+        selected_value = event.widget.get()
+        self.user_input.delete(1.0, tk.END)
+        self.user_input.insert(tk.END, f"{selected_value}")
+
+        if selected_value == "Sim":
+            self.drink_dropdown.dropdowns[0].pack(pady=10)
+        else:
+            self.drink_dropdown.dropdowns[0].pack_forget()
 
     def __pizzaChooseLogic(self, pizzaFlavors: List[str]):
         self.pizza_dropdown_values = [tk.StringVar(value=pizzaFlavors[0]), tk.StringVar(value=pizzaFlavors[1]),
