@@ -13,6 +13,8 @@ class OptionFrame(ttk.Frame):
         super().__init__(parent)
         self.user_input = user_input
         self.pizza_dropdown_values = []
+        self.second_pizza_dropdown = None
+        self.second_pizza_extra_dropdown = None
 
     def update_frame(self, chosen_option: str):
         clear_frame(self)
@@ -52,11 +54,25 @@ class OptionFrame(ttk.Frame):
                                                  callback=self.on_pizza_change)
         first_pizza_dropdown.create_extra_dropdown(pizzaFlavors, initial_option=pizzaFlavors[1],
                                                    callback=self.on_pizza_change, name="first_pizza_extra")
-        second_pizza_dropdown = DropdownComponent(self, "Select Second Pizza:", pizzaFlavors, "",
-                                                  self.user_input, initial_option=pizzaFlavors[2],
-                                                  callback=self.on_pizza_change, name="second_pizza")
-        second_pizza_dropdown.create_extra_dropdown(pizzaFlavors, initial_option=pizzaFlavors[3],
-                                                    callback=self.on_pizza_change, name="second_pizza_extra")
+        self.checkbox_var = tk.BooleanVar(value=False)
+        self.checkbox = tk.Checkbutton(self, text="Add Second Pizza", variable=self.checkbox_var,
+                                       command=self.toggle_second_pizza)
+        self.checkbox.pack(pady=10)
+        self.second_pizza_dropdown = DropdownComponent(self, "Select Second Pizza:", pizzaFlavors,
+                                                       "", self.user_input, initial_option=pizzaFlavors[2],
+                                                       callback=self.on_pizza_change, name="second_pizza")
+        self.second_pizza_dropdown.create_extra_dropdown(pizzaFlavors, initial_option=pizzaFlavors[3],
+                                                         callback=self.on_pizza_change, name="second_pizza_extra")
+        self.update_pizza_text()
+        self.toggle_second_pizza()
+
+    def toggle_second_pizza(self):
+        if self.checkbox_var.get():
+            self.second_pizza_dropdown.dropdowns[0].pack(pady=10)
+            self.second_pizza_dropdown.dropdowns[1].pack(pady=10)
+        else:
+            self.second_pizza_dropdown.dropdowns[0].pack_forget()
+            self.second_pizza_dropdown.dropdowns[1].pack_forget()
         self.update_pizza_text()
 
     def on_pizza_change(self, event: tk.Event):
@@ -75,12 +91,22 @@ class OptionFrame(ttk.Frame):
 
     def update_pizza_text(self):
         self.user_input.delete(1.0, tk.END)
+
         pizzas = [val.get() for val in self.pizza_dropdown_values]
+
         isFirstPizzaHomogeneous = pizzas[0] == pizzas[1]
         isSecondPizzaHomogeneous = pizzas[2] == pizzas[3]
+
         firstPizzaTag = f"pizza meia {pizzas[0]} meia {pizzas[1]}" if not isFirstPizzaHomogeneous else \
             f"pizza {pizzas[0]}"
-        secondPizzaTag = f"pizza meia {pizzas[2]} meia {pizzas[3]}" if not isSecondPizzaHomogeneous else \
-            f"pizza {pizzas[2]}"
-        newValue = f"Vou querer uma {firstPizzaTag} e uma {secondPizzaTag}"
+
+        # Initial newValue contains only first pizza details
+        newValue = f"Vou querer uma {firstPizzaTag}"
+
+        # If the checkbox is selected, add details of the second pizza to newValue
+        if self.checkbox_var.get():
+            secondPizzaTag = f"pizza meia {pizzas[2]} meia {pizzas[3]}" if not isSecondPizzaHomogeneous else \
+                f"pizza {pizzas[2]}"
+            newValue += f" e uma {secondPizzaTag}"
+
         self.user_input.insert(tk.END, newValue)
