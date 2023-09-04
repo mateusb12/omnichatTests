@@ -74,7 +74,8 @@ class MainUI(tk.Tk):
         default_message = self.option_frame.update_frame(chosen_option)
 
         if chosen_option == "2- Pizza Choose":
-            self.option_frame.update_pizza_text()
+            pizzaComponent = self.option_frame.pizza_component
+            pizzaComponent.update_pizza_text()
         else:
             format_str = self.MAIN_DROPDOWN_FORMATS.get(chosen_option, "{}")
             formatted_message = format_str.format(default_message)
