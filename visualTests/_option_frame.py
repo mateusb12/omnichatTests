@@ -32,8 +32,10 @@ class OptionFrame(ttk.Frame):
         elif chosen_option == "3- Drink Choose":
             drink_options = ["Coca", "Guaraná", "Fanta"]
             default_message = drink_options[0]
-            DropdownComponent(self, "Select Drink:", drink_options,
-                              "Vou querer uma {}", self.user_input)
+            accept_drink = DropdownComponent(self, "Accept Drink:", ["Sim", "Não"],
+                                             "{}", self.user_input)
+            drink_dropdown = DropdownComponent(self, "Select Drink:", drink_options,
+                                               "Vou querer uma {}", self.user_input)
         elif chosen_option == "4- Finish":
             payment_options = ["Cartão", "Dinheiro", "Pix"]
             default_message = payment_options[0]

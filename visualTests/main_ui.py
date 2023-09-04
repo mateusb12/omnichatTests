@@ -60,7 +60,6 @@ class MainUI(tk.Tk):
         self.grid_rowconfigure(4, weight=1)
 
         self.on_main_dropdown_change(None)
-        # self.__update_text_field()
 
     def on_send_click(self):
         user_message = self.user_input.get("1.0", 'end-1c')
