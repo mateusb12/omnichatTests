@@ -59,7 +59,8 @@ class MainUI(tk.Tk):
         self.grid_rowconfigure(3, weight=1)
         self.grid_rowconfigure(4, weight=1)
 
-        self.__update_text_field()
+        self.on_main_dropdown_change(None)
+        # self.__update_text_field()
 
     def on_send_click(self):
         user_message = self.user_input.get("1.0", 'end-1c')
@@ -69,9 +70,8 @@ class MainUI(tk.Tk):
         botResponse = convertResponseToUtf8(rawResponse)
         self.conversation_text_field.insert(tk.END, f"Bot: {botResponse}\n\n")
 
-    def on_main_dropdown_change(self, event: tk.Event):
+    def on_main_dropdown_change(self, event: tk.Event or None):
         chosen_option = self.main_dropdown.get()
-        self.option_frame.update_frame(chosen_option)
         default_message = self.option_frame.update_frame(chosen_option)
 
         if chosen_option == "2- Pizza Choose":

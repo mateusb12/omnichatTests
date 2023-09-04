@@ -23,6 +23,8 @@ class OptionFrame(ttk.Frame):
             default_message = greeting_options[0]
             DropdownComponent(self, "Select Greeting:", greeting_options,
                               "{}", self.user_input)
+            self.user_input.delete(1.0, tk.END)
+            self.user_input.insert(tk.END, default_message)
         elif chosen_option == "2- Pizza Choose":
             pizzaFlavors = ["Margherita", "Pepperoni", "Veggie", "BBQ Chicken"]
             default_message = pizzaFlavors[0]
