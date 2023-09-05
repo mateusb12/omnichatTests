@@ -1,7 +1,7 @@
 import tkinter as tk
 from typing import List
 
-from visualTests._dropdown import DropdownComponent
+from visualTests.core_components._dropdown import DropdownComponent
 
 
 class DrinkOptionComponent:

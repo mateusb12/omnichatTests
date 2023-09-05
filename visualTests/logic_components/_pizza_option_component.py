@@ -1,10 +1,9 @@
 from __future__ import annotations
 
 import tkinter as tk
-from tkinter import ttk
 from typing import List
 
-from visualTests._dropdown import clear_frame, DropdownComponent
+from visualTests.core_components._dropdown import DropdownComponent
 
 
 class PizzaOptionComponent:
