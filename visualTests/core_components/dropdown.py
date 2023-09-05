@@ -7,10 +7,11 @@ from typing import List, Callable
 class DropdownComponent:
     def __init__(self, parent, label_text: str, options: List[str], message_format: str, user_input: tk.Text,
                  initial_option=None, callback: Callable[[tk.Event], None] = None,
-                 name: str = None):
+                 name: str = None, custom_message_formatter: Callable[[str], str] = None):
         self.parent = parent
         self.user_input = user_input
         self.message_format = message_format
+        self.custom_message_formatter = custom_message_formatter
 
         self.frame = ttk.Frame(parent)
         self.frame.pack(pady=10)
@@ -19,7 +20,6 @@ class DropdownComponent:
         label.pack(pady=10)
 
         self.dropdowns = []
-
         self.create_dropdown(options, initial_option, callback, name)
 
     def create_dropdown(self, options, initial_option=None, callback=None, name=None):
@@ -41,7 +41,12 @@ class DropdownComponent:
     def generate_input_callback(self):
         def callback(event):
             self.user_input.delete(1.0, tk.END)
+            selected_option = event.widget.get()
             formatted_message = self.message_format.format(*(dropdown.get() for dropdown in self.dropdowns))
+
+            if self.custom_message_formatter:
+                formatted_message = self.custom_message_formatter(selected_option)
+
             self.user_input.insert(tk.END, formatted_message)
 
         return callback

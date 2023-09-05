@@ -4,7 +4,7 @@ import tkinter as tk
 from tkinter import ttk
 
 from requestTests.calls.sendHttpCalls import sendTwilioRequest, convertResponseToUtf8
-from visualTests.core_components._option_frame import OptionFrame
+from visualTests.core_components.option_frame import OptionFrame
 
 
 class MainUI(tk.Tk):

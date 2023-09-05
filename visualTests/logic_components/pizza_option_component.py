@@ -3,7 +3,7 @@ from __future__ import annotations
 import tkinter as tk
 from typing import List
 
-from visualTests.core_components._dropdown import DropdownComponent
+from visualTests.core_components.dropdown import DropdownComponent
 
 
 class PizzaOptionComponent:
