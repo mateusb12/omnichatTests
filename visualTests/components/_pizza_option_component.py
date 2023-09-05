@@ -4,7 +4,7 @@ import tkinter as tk
 from tkinter import ttk
 from typing import List
 
-from visualTests._dropdown_component import clear_frame, DropdownComponent
+from visualTests._dropdown import clear_frame, DropdownComponent
 
 
 class PizzaOptionComponent:
