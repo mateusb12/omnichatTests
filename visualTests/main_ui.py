@@ -4,6 +4,7 @@ import tkinter as tk
 from tkinter import ttk
 
 from requestTests.calls.sendHttpCalls import sendTwilioRequest, convertResponseToUtf8
+from utils.timingDecorator import timingDecorator
 from visualTests.core_components.option_frame import OptionFrame
 
 
@@ -61,6 +62,7 @@ class MainUI(tk.Tk):
 
         self.on_main_dropdown_change(None)
 
+    @timingDecorator
     def on_send_click(self):
         user_message = self.user_input.get("1.0", 'end-1c')
         self.user_input.delete(1.0, tk.END)

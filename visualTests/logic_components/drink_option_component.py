@@ -51,8 +51,8 @@ class DrinkOptionComponent:
         self.user_input.insert(tk.END, f"{selected_value}")
 
         if selected_value == "Sim":
-            self.drink_choose_type_dropdown.dropdowns[0].pack(pady=10)
-            self.drink_choose_amount_dropdown.dropdowns[0].pack(pady=20)
+            self.drink_choose_type_dropdown.dropdowns[0].pack(pady=2)
+            self.drink_choose_amount_dropdown.dropdowns[0].pack(pady=7)
         else:
             self.drink_choose_type_dropdown.dropdowns[0].pack_forget()
             self.drink_choose_amount_dropdown.dropdowns[0].pack_forget()
