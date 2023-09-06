@@ -16,14 +16,14 @@ class DropdownComponent:
         self.frame = ttk.Frame(parent)
         self.frame.pack(pady=10)
 
-        label = ttk.Label(parent, text=label_text)
-        label.pack(pady=10)
+        label = ttk.Label(self.frame, text=label_text)
+        label.pack(pady=(5, 0), side='top')
 
         self.dropdowns = []
         self.create_dropdown(options, initial_option, callback, name)
 
     def create_dropdown(self, options, initial_option=None, callback=None, name=None):
-        dropdown = ttk.Combobox(self.parent, values=options, width=20, style='Clam.TCombobox', name=name)
+        dropdown = ttk.Combobox(self.frame, values=options, width=20, style='Clam.TCombobox', name=name)
         dropdown.pack(pady=10)
         default_option = initial_option or options[0]
         dropdown.set(default_option)

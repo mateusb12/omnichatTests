@@ -28,11 +28,11 @@ class OptionFrame(ttk.Frame):
             self.user_input.delete(1.0, tk.END)
             self.user_input.insert(tk.END, default_message)
         elif chosen_option == "2- Pizza Choose":
-            pizzaFlavors = ["Margherita", "Pepperoni", "Veggie", "BBQ Chicken"]
+            pizzaFlavors = ["Calabresa", "Frango", "Portuguesa", "Margherita", "Pepperoni", "Mussarela"]
             default_message = pizzaFlavors[0]
             self.pizza_component.pizza_choose_logic(pizzaFlavors)
         elif chosen_option == "3- Drink Choose":
-            drink_options = ["Coca", "Guaraná", "Fanta"]
+            drink_options = ["Coca-Cola", "Guaraná", "Suco de Laranja"]
             default_message = drink_options[0]
             self.drink_component.drink_choose_logic(drink_options)
         elif chosen_option == "4- Finish":
