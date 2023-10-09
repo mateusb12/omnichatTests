@@ -67,3 +67,30 @@ def getDialogflowBoilerPlate(body: str = "Oii"):
         },
         "session": "projects/pizzadobill-rpin/locations/global/agent/sessions/1b7b59ab-4d7f-9187-9c63-2b8ad5255a0d"
     })
+
+
+def getInstagramBoilerPlate(body: str = "Oii"):
+    return {
+        "object": "instagram",
+        "entry": [
+            {
+                "time": 1696863950640,
+                "id": "17841413847401845",
+                "messaging": [
+                    {
+                        "sender": {
+                            "id": "5458298387608405"
+                        },
+                        "recipient": {
+                            "id": "17841413847401845"
+                        },
+                        "timestamp": 1696863950097,
+                        "message": {
+                            "mid": "aWdD",
+                            "text": body
+                        }
+                    }
+                ]
+            }
+        ]
+    }

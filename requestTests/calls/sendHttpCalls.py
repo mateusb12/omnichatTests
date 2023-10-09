@@ -1,7 +1,8 @@
 import html
 import requests
 import xml.etree.ElementTree as ElementTree
-from requestTests.calls.requisitionBoilerPlate import getTwilioBoilerPlate, getDialogflowBoilerPlate
+from requestTests.calls.requisitionBoilerPlate import getTwilioBoilerPlate, getDialogflowBoilerPlate, \
+    getInstagramBoilerPlate
 
 
 def sendTwilioRequest(url: str = "http://localhost:3000/twilioSandbox", body: str = "Oii"):
@@ -16,6 +17,16 @@ def sendTwilioRequest(url: str = "http://localhost:3000/twilioSandbox", body: st
     # Define the form data
     data = getTwilioBoilerPlate(body=body)
     return requests.post(url, headers=headers, data=data)
+
+
+def sendInstagramRequest(url: str = "http://localhost:3000/instagram", body: str = "Oii"):
+    headers = {
+        "Content-Type": "application/json",
+        "Accept": "*/*",
+    }
+
+    data = getInstagramBoilerPlate(body=body)
+    return requests.post(url, headers=headers, json=data)
 
 
 def sendDialogflowRequest(url: str = "http://localhost:3000/webhookForIntent", body_content: str = "Oii"):
@@ -39,7 +50,8 @@ def convertResponseToUtf8(response: requests.Response) -> str:
 
 
 def __main():
-    response = sendTwilioRequest(body="Oii")
+    response = sendInstagramRequest(body="Oii")
+    return
     print(convertResponseToUtf8(response))
 
 
