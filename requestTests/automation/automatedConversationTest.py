@@ -15,9 +15,9 @@ def test_run_plan():
     combinedMessages = list(zip(inputMessageList, expectedMessageList))
     for actual, expected in combinedMessages:
         print(colorize(f"→               [User]: {actual}", "1;36"))
-        rawResponse = sendTwilioRequest(body=actual)
-        # textResponse = str(rawResponse.text)
-        textResponse = convertResponseToUtf8(rawResponse)
+        rawResponse = sendFirebaseLessRequest(body=actual)
+        textResponse = str(rawResponse.text)
+        # textResponse = convertResponseToUtf8(rawResponse)
         _actual = textResponse.replace("\n", "")
         _expected = expected.replace("\n", "")
         print(colorize(f"Actual:   {_actual}", "0;33"))
