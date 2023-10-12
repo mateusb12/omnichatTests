@@ -47,8 +47,10 @@ def sendFirebaseLessRequest(url: str = "https://flaskomnichat-xpkcivyfqq-uc.a.ru
     return requests.post(url, json=body)
 
 
-def sendEraseRequest():
-    return requests.put("https://flaskomnichat-xpkcivyfqq-uc.a.run.app/eraseSession")
+def sendEraseRequest(location: str = "cloud"):
+    url_dict = {"cloud": "https://flaskomnichat-xpkcivyfqq-uc.a.run.app", "backend": "http://localhost:3000"}
+    url = url_dict[location]
+    return requests.put(f"{url}/eraseSession")
 
 
 def convertResponseToUtf8(response: requests.Response) -> str:
