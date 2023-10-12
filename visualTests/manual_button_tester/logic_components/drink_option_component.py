@@ -2,7 +2,7 @@ import tkinter as tk
 from tkinter import ttk
 from typing import List
 
-from visualTests.core_components.dropdown import DropdownComponent
+from visualTests.manual_button_tester.core_components.dropdown import DropdownComponent
 
 
 class DrinkOptionComponent:

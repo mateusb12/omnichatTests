@@ -5,7 +5,7 @@ from tkinter import ttk
 
 from requestTests.calls.sendHttpCalls import sendTwilioRequest, convertResponseToUtf8
 from utils.timingDecorator import timingDecorator
-from visualTests.core_components.option_frame import OptionFrame
+from visualTests.manual_button_tester.core_components.option_frame import OptionFrame
 
 
 class MainUI(tk.Tk):

@@ -3,9 +3,9 @@ from __future__ import annotations
 import tkinter as tk
 from tkinter import ttk
 
-from visualTests.logic_components.drink_option_component import DrinkOptionComponent
-from visualTests.core_components.dropdown import clear_frame, DropdownComponent
-from visualTests.logic_components.pizza_option_component import PizzaOptionComponent
+from visualTests.manual_button_tester.logic_components.drink_option_component import DrinkOptionComponent
+from visualTests.manual_button_tester.core_components.dropdown import clear_frame, DropdownComponent
+from visualTests.manual_button_tester.logic_components.pizza_option_component import PizzaOptionComponent
 
 
 class OptionFrame(ttk.Frame):
