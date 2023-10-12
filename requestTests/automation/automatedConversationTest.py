@@ -1,7 +1,8 @@
 import pytest
 from requestTests.automation.testPlanLoader import getDialogflowMessagesPlan, getSignupPlan, getFullPathPlan
 from requestTests.automation.testUtils import colorize, less_strict_comparison
-from requestTests.calls.sendHttpCalls import sendTwilioRequest, convertResponseToUtf8, sendInstagramRequest
+from requestTests.calls.sendHttpCalls import sendTwilioRequest, convertResponseToUtf8, sendInstagramRequest, \
+    sendFirebaseLessRequest
 
 
 def getCurrentPlan():
@@ -14,8 +15,9 @@ def test_run_plan():
     combinedMessages = list(zip(inputMessageList, expectedMessageList))
     for actual, expected in combinedMessages:
         print(colorize(f"→               [User]: {actual}", "1;36"))
-        rawResponse = sendInstagramRequest(body=actual)
-        textResponse = convertResponseToUtf8(rawResponse)
+        rawResponse = sendFirebaseLessRequest(body=actual)
+        textResponse = str(rawResponse.text)
+        # textResponse = convertResponseToUtf8(rawResponse)
         _actual = textResponse.replace("\n", "")
         _expected = expected.replace("\n", "")
         print(colorize(f"Actual:   {_actual}", "0;33"))

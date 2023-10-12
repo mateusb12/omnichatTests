@@ -42,6 +42,15 @@ def sendDialogflowRequest(url: str = "http://localhost:3000/webhookForIntent", b
     return requests.post(url, headers=headers, data=body_content)
 
 
+def sendFirebaseLessRequest(url: str = "https://flaskomnichat-xpkcivyfqq-uc.a.run.app/testDialogflow",
+                            body: str = "Oii"):
+    return requests.post(url, json=body)
+
+
+def sendEraseRequest():
+    return requests.put("https://flaskomnichat-xpkcivyfqq-uc.a.run.app/eraseSession")
+
+
 def convertResponseToUtf8(response: requests.Response) -> str:
     responseXmlContent = response.text
     formatted = html.unescape(responseXmlContent)
@@ -50,9 +59,11 @@ def convertResponseToUtf8(response: requests.Response) -> str:
 
 
 def __main():
-    response = sendInstagramRequest(body="Oii")
+    response = sendFirebaseLessRequest(body="Oii")
+    text = response.text
+    print(text)
     return
-    print(convertResponseToUtf8(response))
+    # print(convertResponseToUtf8(response))
 
 
 if __name__ == "__main__":
