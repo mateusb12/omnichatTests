@@ -1,5 +1,6 @@
 document.getElementById('csvFileInput').addEventListener('change', loadCSV);
-document.getElementById('sendBtn').addEventListener('click', sendData);
+document.getElementById('sendButton').addEventListener('click', sendData);
+
 
 function loadCSV(event) {
     const file = event.target.files[0];
@@ -41,8 +42,13 @@ function loadCSV(event) {
     reader.readAsText(file);
 }
 
-function sendData() {
-    // For demonstration purposes, we'll mock the send function.
-    const textArea = document.getElementById('responseTextArea');
-    textArea.value = "Data sent successfully!";
+async function sendData() {
+    console.log("Button clicked")
+    const result = await window.pyscript.execute({
+        file: './dummy_python_function.py',
+        function: 'dummyFunction',
+        args: []
+    });
+    console.log("Result from Python:", result);
+    alert(result); // Display the result from the Python function
 }

@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CSV Loader App</title>
+<!--    <link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css"/>-->
+<!--    <script defer src="https://pyscript.net/latest/pyscript.js"></script>-->
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -11,7 +13,7 @@
     <div class="controls">
         <input type="file" id="csvFileInput" style="display: none;">
         <label for="csvFileInput" class="custom-file-input">Choose File</label>
-        <button class="send-button">Send</button>
+        <button id="sendButton" class="send-button">Send</button>
     </div>
 
     <table id="csvTable">
@@ -20,6 +22,6 @@
     </table>
     <textarea id="responseTextArea" readonly></textarea>
 </div>
-<script src="script.js"></script>
 </body>
+<script src="script.js"></script>
 </html>
