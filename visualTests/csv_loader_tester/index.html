@@ -24,10 +24,22 @@
 </div>
 
 <h1>Pyscript Tests</h1>
+<h2 id="today"></h2>
+<h2 id="pi"></h2>
+<py-config>
+    [[fetch]]
+    from = '.'
+    files = ['dummy_python_function.py']
+</py-config>
 <py-script>
         import datetime as dt
-        pyscript.write('today', dt.date.today().strftime('%Y-%m-%d'))
-        pyscript.write('pi', f'pi is approximately {3.14159:.3f}')
+        from dummy_python_function import *
+        _today = dt.date.today().strftime('%Y-%m-%d')
+        _pi = f'pi is approximately {3.14159:.3f}'
+        _dummy = dummyFunction()
+
+        pyscript.write('today', _today)
+        pyscript.write('pi', _dummy)
  </py-script>
 </body>
 <script src="script.js"></script>
