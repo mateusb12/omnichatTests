@@ -44,6 +44,7 @@ function loadCSV(event) {
 
 async function sendData() {
     console.log("Button clicked")
+    console.log(window.pyscript);
     const result = await window.pyscript.execute({
         file: './dummy_python_function.py',
         function: 'dummyFunction',

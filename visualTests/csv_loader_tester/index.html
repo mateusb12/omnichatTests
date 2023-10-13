@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CSV Loader App</title>
-<!--    <link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css"/>-->
-<!--    <script defer src="https://pyscript.net/latest/pyscript.js"></script>-->
+    <link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css"/>
+    <script defer src="https://pyscript.net/latest/pyscript.js"></script>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -22,6 +22,13 @@
     </table>
     <textarea id="responseTextArea" readonly></textarea>
 </div>
+
+<h1>Pyscript Tests</h1>
+<py-script>
+        import datetime as dt
+        pyscript.write('today', dt.date.today().strftime('%Y-%m-%d'))
+        pyscript.write('pi', f'pi is approximately {3.14159:.3f}')
+ </py-script>
 </body>
 <script src="script.js"></script>
 </html>
