@@ -43,13 +43,33 @@ function loadCSV(event) {
 }
 
 async function sendData() {
-    console.log("Button clicked")
-    console.log(window.pyscript);
-    const result = await window.pyscript.execute({
-        file: './pyscript_interface.py',
-        function: 'dummyFunction',
-        args: []
-    });
-    console.log("Result from Python:", result);
-    alert(result); // Display the result from the Python function
+    console.log("Button clicked");
+
+    const table = document.getElementById('csvTable');
+    const responseTextArea = document.getElementById('responseTextArea');
+
+    // Start from 1 to skip the header row
+    for (let i = 1; i < table.rows.length; i++) {
+        const row = table.rows[i];
+
+        // Assuming the Input column is the second one
+        const inputCellValue = row.cells[1].textContent;
+
+        console.log("About to call Python function with input:", inputCellValue);
+
+        // Call the Python function
+        const result = await window.pyscript.execute({
+            file: './pyscript_interface.py',
+            function: 'sendFirebaseLessRequest',
+            args: [inputCellValue]
+        });
+
+        console.log("Result from Python:", result);
+
+        // Assuming the ActualOutput column is the last one
+        row.cells[row.cells.length - 1].textContent = result;
+
+        // Append result to responseTextArea
+        responseTextArea.value += result + '\n';
+    }
 }

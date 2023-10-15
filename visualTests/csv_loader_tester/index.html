@@ -35,17 +35,19 @@
 
     [[fetch]]
     from = '../../../requestTests/calls'
-    files = ['dummy.py', 'sendHttpCalls.py']
+    files = ['dummy.py', 'sendHttpCalls.py', 'requisitionBoilerPlate.py']
 </py-config>
 <py-script>
         import datetime as dt
-        from pyscript_interface import *
+        from dummy import *
+        from sendHttpCalls import *
         _today = dt.date.today().strftime('%Y-%m-%d')
         _pi = f'pi is approximately {3.14159:.3f}'
-        _dummy = dummyFunction()
+        _dummy = dummy()
 
         pyscript.write('today', _today)
         pyscript.write('pi', _dummy)
+
  </py-script>
 </body>
 <script src="script.js"></script>

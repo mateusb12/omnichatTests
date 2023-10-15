@@ -3,6 +3,7 @@ import os
 import sys
 
 sys.path.append(r'E:\Python\omnichatTests\requestTests')
+sys.path.append(r'E:\Python\omnichatTests')
 
 
 def dummyFunction():

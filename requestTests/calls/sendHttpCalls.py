@@ -1,7 +1,7 @@
 import html
 import requests
 import xml.etree.ElementTree as ElementTree
-from requestTests.calls.requisitionBoilerPlate import getTwilioBoilerPlate, getDialogflowBoilerPlate, \
+from requisitionBoilerPlate import getTwilioBoilerPlate, getDialogflowBoilerPlate, \
     getInstagramBoilerPlate
 
 
