@@ -27,13 +27,19 @@
 <h2 id="today"></h2>
 <h2 id="pi"></h2>
 <py-config>
+    packages = ['requests']
+
     [[fetch]]
-    from = '.'
-    files = ['dummy_python_function.py']
+    from = '../../visualTests/csv_loader_tester'
+    files = ['pyscript_interface.py']
+
+    [[fetch]]
+    from = '../../../requestTests/calls'
+    files = ['dummy.py', 'sendHttpCalls.py']
 </py-config>
 <py-script>
         import datetime as dt
-        from dummy_python_function import *
+        from pyscript_interface import *
         _today = dt.date.today().strftime('%Y-%m-%d')
         _pi = f'pi is approximately {3.14159:.3f}'
         _dummy = dummyFunction()
@@ -44,3 +50,5 @@
 </body>
 <script src="script.js"></script>
 </html>
+
+<!--PS E:\Python\omnichatTests> python3 -m http.server-->
