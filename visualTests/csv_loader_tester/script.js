@@ -1,15 +1,53 @@
 document.getElementById('csvFileInput').addEventListener('change', loadCSV);
 document.getElementById('sendButton').addEventListener('click', sendData);
 
-let pyodideRuntime = null;
+// let pyodideRuntime = null;
+//
+// languagePluginLoader.then(() => {
+//     pyodideRuntime = pyodide;
+// });
 
-languagePluginLoader.then(() => {
-    pyodideRuntime = pyodide;
-});
+function checkServerStatus() {
+  const port = 4608;
+  const url = `http://localhost:${port}/`;
+
+  fetch(url)
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error('Server returned a non-200 response: ' + response.status);
+      }
+      return response.text(); // or response.json() if you are returning JSON
+    })
+    .then((data) => {
+      console.log('Server is running:', data);
+    })
+    .catch((error) => {
+      if (error.message.includes('NetworkError') || error.message.includes('Failed to fetch')) {
+        console.error('Server is offline or blocked by CORS.');
+        startFlaskServer();
+      } else {
+        console.error('Error:', error.message);
+      }
+    });
+}
+
+function startFlaskServer() {
+  const command = 'python csv_flask.py';
+  exec(command, (error, stdout, stderr) => {
+    if (error) {
+      console.error(`exec error: ${error}`);
+      return;
+    }
+    console.log(`stdout: ${stdout}`);
+    console.error(`stderr: ${stderr}`);
+  });
+}
 
 function loadCSV(event) {
     const file = event.target.files[0];
     if (!file) return;
+
+    checkServerStatus();
 
     const reader = new FileReader();
     reader.onload = function (e) {
