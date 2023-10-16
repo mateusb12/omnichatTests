@@ -1,46 +1,28 @@
 document.getElementById('csvFileInput').addEventListener('change', loadCSV);
 document.getElementById('sendButton').addEventListener('click', sendData);
 
-// let pyodideRuntime = null;
-//
-// languagePluginLoader.then(() => {
-//     pyodideRuntime = pyodide;
-// });
-
 function checkServerStatus() {
-  const port = 4608;
-  const url = `http://localhost:${port}/`;
+    const port = 4608;
+    const url = `http://localhost:${port}/`;
 
-  fetch(url)
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error('Server returned a non-200 response: ' + response.status);
-      }
-      return response.text(); // or response.json() if you are returning JSON
-    })
-    .then((data) => {
-      console.log('Server is running:', data);
-    })
-    .catch((error) => {
-      if (error.message.includes('NetworkError') || error.message.includes('Failed to fetch')) {
-        console.error('Server is offline or blocked by CORS.');
-        startFlaskServer();
-      } else {
-        console.error('Error:', error.message);
-      }
-    });
-}
-
-function startFlaskServer() {
-  const command = 'python csv_flask.py';
-  exec(command, (error, stdout, stderr) => {
-    if (error) {
-      console.error(`exec error: ${error}`);
-      return;
-    }
-    console.log(`stdout: ${stdout}`);
-    console.error(`stderr: ${stderr}`);
-  });
+    fetch(url)
+        .then((response) => {
+            if (!response.ok) {
+                throw new Error('Server returned a non-200 response: ' + response.status);
+            }
+            return response.text(); // or response.json() if you are returning JSON
+        })
+        .then((data) => {
+            console.log('Server is running:', data);
+        })
+        .catch((error) => {
+            if (error.message.includes('NetworkError') || error.message.includes('Failed to fetch')) {
+                console.error('Server is offline or blocked by CORS.');
+                alert('Please start the server using START.BAT and try again.');
+            } else {
+                console.error('Error:', error.message);
+            }
+        });
 }
 
 function loadCSV(event) {
@@ -93,13 +75,6 @@ function loadCSV(event) {
 
 async function sendData() {
     console.log("Button clicked");
-
-    if (pyodideRuntime === null) {
-        console.error("Pyodide is not initialized yet.");
-        return;
-    }
-
-
     const table = document.getElementById('csvTable');
     const responseTextArea = document.getElementById('responseTextArea');
 
@@ -112,20 +87,42 @@ async function sendData() {
     for (let i = 1; i < table.rows.length; i++) {
         const row = table.rows[i];
         const inputCellValue = row.cells[1].textContent;
-        console.log("About to call Python function with input:", inputCellValue);
+        let result = await getBotResponseFromFlask(inputCellValue);
+        row.cells[2].textContent = result;
+    }
+}
 
-        const pythonCode = `
-        from pyscript_interface import sendFirebaseLessRequest
-        result = sendFirebaseLessRequest("${inputCellValue}")
-        result
-        `;
+async function getBotResponseFromFlask(inputCellValue) {
+    const port = 4608;
+    const url = `http://localhost:${port}/getBotResponse`;
 
-        try {
-            let result = await pyodideRuntime.runPythonAsync(pythonCode);
-            // ... rest of your code ...
-        } catch (error) {
-            console.error("Error calling Python function:", error);
+    // Prepare the request body
+    const requestBody = {
+        body: inputCellValue // assuming the server expects a "body" key with the value
+    };
+
+    try {
+        // Send the POST request
+        const response = await fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(requestBody)
+        });
+
+        // Check if the request was successful
+        if (!response.ok) {
+            throw new Error('Server returned a non-200 response: ' + response.status);
         }
+
+        const data = await response.json(); // Assuming the server returns a JSON response
+        console.log('Received response from server:', data);
+
+        return data;
+    } catch (error) {
+        console.error('Error calling the Flask endpoint:', error);
+        throw error; // Re-throwing the error so that it can be caught outside this function if needed
     }
 }
 
