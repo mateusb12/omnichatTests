@@ -25,6 +25,11 @@ function checkServerStatus() {
         });
 }
 
+function sanitizeContent(content) {
+    // Replace \n with <br> for line breaks
+    return content.replace(/\\n/g, '<br>');
+}
+
 function loadCSV(event) {
     const file = event.target.files[0];
     if (!file) return;
@@ -58,7 +63,9 @@ function loadCSV(event) {
                 const tr = document.createElement('tr');
                 line.forEach(cell => {
                     const td = document.createElement('td');
-                    td.textContent = cell;
+                    const sanitizedContent = sanitizeContent(cell); // Sanitize content before setting
+                    console.log("Sanitized content: " + sanitizedContent);
+                    td.innerHTML = sanitizedContent;
                     tr.appendChild(td);
                 });
                 const tdActual = document.createElement('td'); // ActualOutput cell placeholder
@@ -71,6 +78,7 @@ function loadCSV(event) {
     };
     reader.readAsText(file);
 }
+
 
 
 async function sendData() {
@@ -90,7 +98,7 @@ async function sendData() {
         let result = await getBotResponseFromFlask(inputCellValue);
         // Assuming "ExpectedOutput" is the second column and "ActualOutput" is the third column
         // Set the content of the "ActualOutput" column
-        row.cells[row.cells.length - 1].textContent = result;
+        row.cells[row.cells.length - 1].innerHTML = result.replace(/\n/g, '<br>');
     }
 }
 

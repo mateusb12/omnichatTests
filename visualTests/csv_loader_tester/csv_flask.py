@@ -4,6 +4,7 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS
 from werkzeug.exceptions import BadRequest
 from requestRelatedTests.calls.sendHttpCalls import sendFirebaseLessRequest
+from utils.corsBlocker import createResponseWithAntiCorsHeaders
 
 app = Flask(__name__)
 CORS(app)
@@ -25,8 +26,8 @@ def get_bot_response():
         return "Message cannot be empty. Try sending a JSON object with any string message.", 400
     if isinstance(body, dict):
         body = body['body']
-    result = sendFirebaseLessRequest(body=body)
-    return jsonify(result.text)
+    requisitionResponse = sendFirebaseLessRequest(body=body)
+    return createResponseWithAntiCorsHeaders(requisitionResponse.text)
 
 
 def start_server():
