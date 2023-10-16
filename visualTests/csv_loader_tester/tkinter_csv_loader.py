@@ -4,7 +4,7 @@ from tkinter import filedialog, ttk, messagebox
 import csv
 import pandas as pd
 
-from requestTests.calls.sendHttpCalls import sendFirebaseLessRequest
+from requestRelatedTests.calls.sendHttpCalls import sendFirebaseLessRequest
 
 
 class CSVLoaderApp:

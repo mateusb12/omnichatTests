@@ -1,8 +1,9 @@
 import html
 import requests
 import xml.etree.ElementTree as ElementTree
-from requisitionBoilerPlate import getTwilioBoilerPlate, getDialogflowBoilerPlate, \
-    getInstagramBoilerPlate
+
+from requestRelatedTests.calls.requisitionBoilerPlate import getTwilioBoilerPlate, getInstagramBoilerPlate, \
+    getDialogflowBoilerPlate
 
 
 def sendTwilioRequest(url: str = "http://localhost:3000/twilioSandbox", body: str = "Oii"):

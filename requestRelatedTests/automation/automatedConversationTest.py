@@ -1,7 +1,7 @@
 import pytest
-from requestTests.automation.testPlanLoader import getDialogflowMessagesPlan, getSignupPlan, getFullPathPlan
-from requestTests.automation.testUtils import colorize, less_strict_comparison
-from requestTests.calls.sendHttpCalls import sendTwilioRequest, convertResponseToUtf8, sendInstagramRequest, \
+from requestRelatedTests.automation.testPlanLoader import getDialogflowMessagesPlan, getSignupPlan, getFullPathPlan
+from requestRelatedTests.automation.testUtils import colorize, less_strict_comparison
+from requestRelatedTests.calls.sendHttpCalls import sendTwilioRequest, convertResponseToUtf8, sendInstagramRequest, \
     sendFirebaseLessRequest, sendEraseRequest
 
 

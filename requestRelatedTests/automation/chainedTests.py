@@ -1,6 +1,6 @@
 from typing import List
 
-from requestTests.calls.sendHttpCalls import sendFirebaseLessRequest, sendEraseRequest
+from requestRelatedTests.calls.sendHttpCalls import sendFirebaseLessRequest, sendEraseRequest
 
 
 def simple_plan():

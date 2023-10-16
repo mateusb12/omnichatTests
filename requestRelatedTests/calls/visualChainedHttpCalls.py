@@ -1,7 +1,7 @@
 from typing import List
 
-from requestTests.automation.testPlanLoader import getSignupPlan
-from requestTests.calls.sendHttpCalls import sendTwilioRequest, convertResponseToUtf8
+from requestRelatedTests.automation.testPlanLoader import getSignupPlan
+from requestRelatedTests.calls.sendHttpCalls import sendTwilioRequest, convertResponseToUtf8
 
 
 def chainedHttpCalls(messageList: List[str], delay: int):

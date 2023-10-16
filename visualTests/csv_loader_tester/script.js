@@ -83,12 +83,14 @@ async function sendData() {
         return;
     }
 
-    // Start from 1 to skip the header row
-    for (let i = 1; i < table.rows.length; i++) {
+    for (let i = 0; i < table.rows.length; i++) {
         const row = table.rows[i];
         const inputCellValue = row.cells[1].textContent;
+        console.log("Input cell value: " + inputCellValue);
         let result = await getBotResponseFromFlask(inputCellValue);
-        row.cells[2].textContent = result;
+        // Assuming "ExpectedOutput" is the second column and "ActualOutput" is the third column
+        // Set the content of the "ActualOutput" column
+        row.cells[row.cells.length - 1].textContent = result;
     }
 }
 
