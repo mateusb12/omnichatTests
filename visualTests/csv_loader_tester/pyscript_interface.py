@@ -10,10 +10,6 @@ def dummyFunction():
     return list(sys.path)
 
 
-# def pyscriptFirebaseLessRequest():
-#     return sendFirebaseLessRequest(body="Oii")
-
-
 def __main():
     aux = dummyFunction()
     print(aux)
