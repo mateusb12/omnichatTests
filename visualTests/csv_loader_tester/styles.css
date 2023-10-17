@@ -1,33 +1,39 @@
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Poppins', sans-serif;
     margin: 20px;
+    background-color: #f7f7f7;
 }
 
 .container {
     display: flex;
     flex-direction: column;
+    max-width: 80%;
+    margin: 0 auto;
+    background-color: #ffffff; /* White color for the container */
+    padding: 20px;
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05); /* Subtle shadow for depth */
 }
 
 .controls {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 15px;
-    width: 80%;
-    margin: 0 auto;
-    margin-bottom: 30px;  /* Additional margin to separate controls from the table */
+    gap: 25px;
 }
 
 .custom-file-input {
-    display: inline-block;
     padding: 10px 15px;
     cursor: pointer;
-    background-color: #f2f2f2;
-    border: 1px solid #ccc;
+    background-color: #007BFF; /* A vibrant blue color */
+    border: none;
+    color: #ffffff; /* White text */
+    border-radius: 5px; /* Slight rounding for modern touch */
+    transition: all 0.3s; /* Smooth transitions */
 }
 
 .custom-file-input:hover {
-    background-color: #e0e0e0;
+    background-color: #0056b3; /* A darker blue for hover */
 }
 
 #csvFileInput {
@@ -38,24 +44,24 @@ body {
     width: 100%;
     border-collapse: collapse;
     margin-bottom: 20px;
-    white-space: pre-line;
 }
 
 #csvTable thead {
-    background-color: #eee;
-    white-space: pre-line;
+    background-color: #f2f2f2;
 }
 
 #csvTable th, #csvTable td {
     border: 1px solid #ccc;
     padding: 8px 12px;
-    white-space: pre-line;
 }
 
 #responseTextArea {
     width: 100%;
     height: 200px;
     resize: vertical;
+    padding: 10px; /* Padding for text area */
+    border-radius: 5px; /* Rounded corners for the textarea */
+    border: 1px solid #ccc; /* A border for definition */
 }
 
 #buttons-container {
@@ -78,12 +84,17 @@ body {
 /* New additions for the Send button */
 .send-button {
     display: inline-block;
-    padding: 10px 15px;
+    padding: 12px 20px;
+    margin-bottom: 20px;
     cursor: pointer;
-    background-color: #f2f2f2;
-    border: 1px solid #ccc;
+    background-color: #5eff3a; /* Muted green shade */
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-weight: bold;
+    transition: background-color 0.3s;
 }
 
 .send-button:hover {
-    background-color: #e0e0e0;
+    background-color: #38b904; /* Slightly darker muted green for hover */
 }

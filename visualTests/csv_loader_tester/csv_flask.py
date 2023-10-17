@@ -1,5 +1,5 @@
 import sys
-
+import fix_imports
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 from werkzeug.exceptions import BadRequest
