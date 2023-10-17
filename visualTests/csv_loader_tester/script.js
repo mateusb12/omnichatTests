@@ -34,7 +34,7 @@ function loadCSV(event) {
     const file = event.target.files[0];
     if (!file) return;
 
-    checkServerStatus();
+    // checkServerStatus();
 
     const reader = new FileReader();
     reader.onload = function (e) {
@@ -98,13 +98,7 @@ async function sendData() {
 }
 
 async function getBotResponseFromFlask(inputCellValue) {
-    const port = 4608;
-    const url = `http://localhost:${port}/getBotResponse`;
-
-    // Prepare the request body
-    const requestBody = {
-        body: inputCellValue // assuming the server expects a "body" key with the value
-    };
+    const url = `https://flaskomnichat-xpkcivyfqq-uc.a.run.app/testDialogflow`;
 
     try {
         // Send the POST request
@@ -113,7 +107,7 @@ async function getBotResponseFromFlask(inputCellValue) {
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify(requestBody)
+            body: JSON.stringify(inputCellValue)  // Send the string directly
         });
 
         // Check if the request was successful
@@ -121,7 +115,7 @@ async function getBotResponseFromFlask(inputCellValue) {
             throw new Error('Server returned a non-200 response: ' + response.status);
         }
 
-        const data = await response.json(); // Assuming the server returns a JSON response
+        const data = await response.text(); // Get the response as plain text
         console.log('Received response from server:', data);
 
         return data;
@@ -130,6 +124,7 @@ async function getBotResponseFromFlask(inputCellValue) {
         throw error; // Re-throwing the error so that it can be caught outside this function if needed
     }
 }
+
 
 async function fillColumnsWithBotResponse() {
     const table = document.getElementById('csvTable');

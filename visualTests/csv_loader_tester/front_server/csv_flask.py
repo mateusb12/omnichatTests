@@ -17,7 +17,6 @@ def hello_world():
 
 @app.route('/getBotResponse', methods=['POST'])
 def get_bot_response():
-    print(list(sys.path))
     if request.method != 'POST':
         return 'Only POST requests are allowed.'
     try:
