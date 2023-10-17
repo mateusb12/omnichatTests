@@ -152,21 +152,25 @@ function compareOutputsAndPlaceEmojis() {
     const positiveEmoji = "🆗"; // OK emoji
     const negativeEmoji = "❌"; // X emoji
 
+    // Helper function to normalize a string by removing whitespaces and newline characters
+    const normalizeString = (str) => str.replace(/\s|\n/g, '');
+
     // Start from 1 to skip the header row
     for (let i = 0; i < table.rows.length; i++) {
         const row = table.rows[i];
-        const expectedOutput = row.cells[2].textContent; // Assuming "ExpectedOutput" is the third column
-        const actualOutput = row.cells[3].textContent; // Assuming "ActualOutput" is the fourth column
+        const expectedOutput = normalizeString(row.cells[2].textContent);
+        const actualOutput = normalizeString(row.cells[3].textContent);
 
-        const testResultCell = row.cells[4]; // Assuming "Test Result" is the fifth column
+        const testResultCell = row.cells[4];
 
-        // Compare the expected and actual outputs
-        if (expectedOutput.trim() === actualOutput.trim()) {
+        // Compare the normalized expected and actual outputs
+        if (expectedOutput === actualOutput) {
             testResultCell.textContent = positiveEmoji;
         } else {
             testResultCell.textContent = negativeEmoji;
         }
     }
 }
+
 
 
