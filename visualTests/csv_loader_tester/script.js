@@ -55,9 +55,15 @@ function loadCSV(event) {
                     th.textContent = header;
                     thead.appendChild(th);
                 });
+
                 const thActual = document.createElement('th'); // ActualOutput column
                 thActual.textContent = 'ActualOutput';
                 thead.appendChild(thActual);
+
+                const thTestResult = document.createElement('th'); // TestResult column
+                thTestResult.textContent = 'TestResult';
+                thead.appendChild(thTestResult);
+
                 table.appendChild(thead);
             } else {  // data rows
                 const tr = document.createElement('tr');
@@ -68,8 +74,13 @@ function loadCSV(event) {
                     td.innerHTML = sanitizedContent;
                     tr.appendChild(td);
                 });
+
                 const tdActual = document.createElement('td'); // ActualOutput cell placeholder
                 tr.appendChild(tdActual);
+
+                const tdTestResult = document.createElement('td'); // TestResult cell placeholder
+                tr.appendChild(tdTestResult);
+
                 tbody.appendChild(tr); // Append the row to tbody
             }
         });
@@ -80,26 +91,10 @@ function loadCSV(event) {
 }
 
 
-
 async function sendData() {
     console.log("Button clicked");
-    const table = document.getElementById('csvTable');
-    const responseTextArea = document.getElementById('responseTextArea');
-
-    if (table.rows.length === 0) {
-        console.error("No data in the table. Please upload a CSV file first.");
-        return;
-    }
-
-    for (let i = 0; i < table.rows.length; i++) {
-        const row = table.rows[i];
-        const inputCellValue = row.cells[1].textContent;
-        console.log("Input cell value: " + inputCellValue);
-        let result = await getBotResponseFromFlask(inputCellValue);
-        // Assuming "ExpectedOutput" is the second column and "ActualOutput" is the third column
-        // Set the content of the "ActualOutput" column
-        row.cells[row.cells.length - 1].innerHTML = result.replace(/\n/g, '<br>');
-    }
+    await fillColumnsWithBotResponse();
+    compareOutputsAndPlaceEmojis();
 }
 
 async function getBotResponseFromFlask(inputCellValue) {
@@ -135,4 +130,48 @@ async function getBotResponseFromFlask(inputCellValue) {
         throw error; // Re-throwing the error so that it can be caught outside this function if needed
     }
 }
+
+async function fillColumnsWithBotResponse() {
+    const table = document.getElementById('csvTable');
+    const responseTextArea = document.getElementById('responseTextArea');
+
+    if (table.rows.length === 0) {
+        console.error("No data in the table. Please upload a CSV file first.");
+        return;
+    }
+
+    for (let i = 0; i < table.rows.length; i++) {
+        const row = table.rows[i];
+        const inputCellValue = row.cells[1].textContent;
+        console.log("Input cell value: " + inputCellValue);
+        let result = await getBotResponseFromFlask(inputCellValue);
+        // Assuming "ExpectedOutput" is the second column and "ActualOutput" is the third column
+        // Set the content of the "ActualOutput" column
+        row.cells[row.cells.length - 2].innerHTML = result.replace(/\n/g, '<br>');
+    }
+}
+
+
+function compareOutputsAndPlaceEmojis() {
+    const table = document.getElementById('csvTable');
+    const positiveEmoji = "🆗"; // OK emoji
+    const negativeEmoji = "❌"; // X emoji
+
+    // Start from 1 to skip the header row
+    for (let i = 0; i < table.rows.length; i++) {
+        const row = table.rows[i];
+        const expectedOutput = row.cells[2].textContent; // Assuming "ExpectedOutput" is the third column
+        const actualOutput = row.cells[3].textContent; // Assuming "ActualOutput" is the fourth column
+
+        const testResultCell = row.cells[4]; // Assuming "Test Result" is the fifth column
+
+        // Compare the expected and actual outputs
+        if (expectedOutput.trim() === actualOutput.trim()) {
+            testResultCell.textContent = positiveEmoji;
+        } else {
+            testResultCell.textContent = negativeEmoji;
+        }
+    }
+}
+
 
