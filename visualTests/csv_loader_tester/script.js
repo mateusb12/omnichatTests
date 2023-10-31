@@ -1,3 +1,5 @@
+import { desired_url } from './test_url.js';
+
 document.getElementById('csvFileInput').addEventListener('change', loadCSV);
 document.getElementById('sendButton').addEventListener('click', sendData);
 
@@ -98,11 +100,13 @@ async function sendData() {
 }
 
 async function getBotResponseFromFlask(inputCellValue) {
-    const url = `https://flaskomnichat-xpkcivyfqq-uc.a.run.app/testDialogflow`;
+    // const url = `https://flaskomnichat-xpkcivyfqq-uc.a.run.app/testDialogflow`;
+    console.log(desired_url);
+
 
     try {
         // Send the POST request
-        const response = await fetch(url, {
+        const response = await fetch(desired_url, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
