@@ -99,3 +99,19 @@ body {
 .send-button:hover {
     background-color: #38b904; /* Slightly darker muted green for hover */
 }
+
+.url-input-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px; /* Adjust the gap between dropdown and button if needed */
+    margin-bottom: 20px; /* Gives some space below the dropdown */
+}
+
+.url-dropdown {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: auto; /* Adjust the width as needed */
+}
+

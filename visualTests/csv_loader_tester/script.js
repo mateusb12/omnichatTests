@@ -1,7 +1,20 @@
-import { desired_url } from './test_url.js';
+import {urlList} from './test_url.js';
 
 document.getElementById('csvFileInput').addEventListener('change', loadCSV);
 document.getElementById('sendButton').addEventListener('click', sendData);
+document.addEventListener('DOMContentLoaded', function () {
+    populateDropdownWithUrls();
+});
+
+function populateDropdownWithUrls() {
+    const urlDropdown = document.getElementById('urlDropdown');
+    urlList.forEach(url => {
+        const option = document.createElement('option');
+        option.value = url;
+        option.textContent = url;
+        urlDropdown.appendChild(option);
+    });
+}
 
 function checkServerStatus() {
     const port = 4608;
@@ -26,6 +39,7 @@ function checkServerStatus() {
             }
         });
 }
+
 
 function sanitizeContent(content) {
     // Replace \n with <br> for line breaks
@@ -95,18 +109,16 @@ function loadCSV(event) {
 
 async function sendData() {
     console.log("Button clicked");
-    await fillColumnsWithBotResponse();
+    const urlDropdown = document.getElementById('urlDropdown');
+    const selectedUrl = urlDropdown.value;
+    await fillColumnsWithBotResponse(selectedUrl);
     compareOutputsAndPlaceEmojis();
 }
 
-async function getBotResponseFromFlask(inputCellValue) {
-    // const url = `https://flaskomnichat-xpkcivyfqq-uc.a.run.app/testDialogflow`;
-    console.log(desired_url);
-
-
+async function getBotResponseFromFlask(inputCellValue, selectedUrl) {
     try {
         // Send the POST request
-        const response = await fetch(desired_url, {
+        const response = await fetch(selectedUrl, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -130,7 +142,7 @@ async function getBotResponseFromFlask(inputCellValue) {
 }
 
 
-async function fillColumnsWithBotResponse() {
+async function fillColumnsWithBotResponse(selectedUrl) {
     const table = document.getElementById('csvTable');
     const responseTextArea = document.getElementById('responseTextArea');
 
@@ -143,7 +155,7 @@ async function fillColumnsWithBotResponse() {
         const row = table.rows[i];
         const inputCellValue = row.cells[1].textContent;
         console.log("Input cell value: " + inputCellValue);
-        let result = await getBotResponseFromFlask(inputCellValue);
+        let result = await getBotResponseFromFlask(inputCellValue, selectedUrl);
         // Assuming "ExpectedOutput" is the second column and "ActualOutput" is the third column
         // Set the content of the "ActualOutput" column
         row.cells[row.cells.length - 2].innerHTML = result.replace(/\n/g, '<br>');
