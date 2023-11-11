@@ -85,8 +85,9 @@ function loadCSV(event) {
                 const tr = document.createElement('tr');
                 line.forEach(cell => {
                     const td = document.createElement('td');
-                    const sanitizedContent = sanitizeContent(cell); // Sanitize content before setting
-                    console.log("Sanitized content: " + sanitizedContent);
+                    console.log("Before sanitize: " + cell);
+                    const sanitizedContent = sanitizeContent(cell);
+                    console.log("After sanitize: " + sanitizedContent);
                     td.innerHTML = sanitizedContent;
                     tr.appendChild(td);
                 });
@@ -156,9 +157,7 @@ async function fillColumnsWithBotResponse(selectedUrl) {
         const inputCellValue = row.cells[1].textContent;
         console.log("Input cell value: " + inputCellValue);
         let result = await getBotResponseFromFlask(inputCellValue, selectedUrl);
-        // Assuming "ExpectedOutput" is the second column and "ActualOutput" is the third column
-        // Set the content of the "ActualOutput" column
-        row.cells[row.cells.length - 2].innerHTML = result.replace(/\n/g, '<br>');
+        row.cells[row.cells.length - 2].innerHTML = sanitizeContent(result).replace(/"/g, '');
     }
 }
 
