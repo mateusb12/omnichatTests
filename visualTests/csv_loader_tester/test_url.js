@@ -1,5 +1,4 @@
-const cloudRunURL = 'https://flaskomnichat-xpkcivyfqq-uc.a.run.app/testDialogflow';
-
-const localhostURL = 'http://localhost:3000/testDialogflow';
-export const urlList = [cloudRunURL, localhostURL]
-export const desired_url = localhostURL;
+export const urlList =
+    ['https://flaskomnichat-xpkcivyfqq-uc.a.run.app/testDialogflow',
+    'http://localhost:3000/testDialogflow',
+    'http://localhost:3000/twilioSandbox']

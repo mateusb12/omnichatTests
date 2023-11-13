@@ -122,7 +122,11 @@ async function getBotResponseFromFlask(inputCellValue, selectedUrl) {
         const response = await fetch(selectedUrl, {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'ProfileName': 'Mateus',
+                'From': 'whatsapp:+558599171902',
+                'WaId': '558599171902',
+                'Body': inputCellValue
             },
             body: JSON.stringify(inputCellValue)  // Send the string directly
         });
@@ -132,15 +136,28 @@ async function getBotResponseFromFlask(inputCellValue, selectedUrl) {
             throw new Error('Server returned a non-200 response: ' + response.status);
         }
 
-        const data = await response.text(); // Get the response as plain text
-        console.log('Received response from server:', data);
+        // Check the response content type
+        const contentType = response.headers.get('content-type');
 
+        let data;
+
+        if (contentType && contentType.includes('application/json')) {
+            // Process JSON response
+            const jsonData = await response.json();
+            data = jsonData.message; // Extracting the 'message' field from JSON
+        } else {
+            // Process text/plain response
+            data = await response.text();
+        }
+
+        console.log('Received response from server:', data);
         return data;
     } catch (error) {
         console.error('Error calling the Flask endpoint:', error);
         throw error; // Re-throwing the error so that it can be caught outside this function if needed
     }
 }
+
 
 
 async function fillColumnsWithBotResponse(selectedUrl) {
