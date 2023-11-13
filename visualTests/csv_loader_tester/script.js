@@ -118,17 +118,16 @@ async function sendData() {
 
 async function getBotResponseFromFlask(inputCellValue, selectedUrl) {
     try {
-        // Send the POST request
+        const headers = new Headers();
+        headers.append('Content-Type', 'application/json; charset=utf-8');
+        headers.append('ProfileName', encodeURIComponent('Mateus'));
+        headers.append('From', encodeURIComponent('whatsapp:+558599171902'));
+        headers.append('WaId', '558599171902');
+        headers.append('Body', encodeURIComponent(inputCellValue));
         const response = await fetch(selectedUrl, {
             method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'ProfileName': 'Mateus',
-                'From': 'whatsapp:+558599171902',
-                'WaId': '558599171902',
-                'Body': inputCellValue
-            },
-            body: JSON.stringify(inputCellValue)  // Send the string directly
+            headers: headers,
+            body: JSON.stringify(inputCellValue)
         });
 
         // Check if the request was successful
@@ -154,11 +153,9 @@ async function getBotResponseFromFlask(inputCellValue, selectedUrl) {
         return data;
     } catch (error) {
         console.error('Error calling the Flask endpoint:', error);
-        throw error; // Re-throwing the error so that it can be caught outside this function if needed
+        throw error;
     }
 }
-
-
 
 async function fillColumnsWithBotResponse(selectedUrl) {
     const table = document.getElementById('csvTable');
