@@ -169,7 +169,7 @@ async function fillColumnsWithBotResponse(selectedUrl) {
     for (let i = 0; i < table.rows.length; i++) {
         const row = table.rows[i];
         const inputCellValue = row.cells[1].textContent;
-        console.log("Input cell value: " + inputCellValue);
+        console.log("Input cell value - " + inputCellValue);
         let result = await getBotResponseFromFlask(inputCellValue, selectedUrl);
         row.cells[row.cells.length - 2].innerHTML = sanitizeContent(result).replace(/"/g, '');
     }
