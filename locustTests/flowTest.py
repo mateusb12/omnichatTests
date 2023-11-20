@@ -9,7 +9,7 @@ class PizzaUser(HttpUser):
     headers = {"Content-Type": "application/json", "ProfileName": "Mateus", "From": 'whatsapp:85999171902',
                "WaId": "85985743958473"}
     messageFlow = ["Oii", "Vou querer uma pizza meia calabresa meia margherita e uma pizza de frango",
-                   "Sim", "Vou querer um guaraná e dois sucos de laranja", "Pix"]
+                   "Sim", "Vou querer dois sucos de laranja", "Pix"]
 
     @task
     def send_messages(self):
