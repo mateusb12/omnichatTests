@@ -42,7 +42,7 @@ class DrinkOrderExtractor:
         return order
 
     @staticmethod
-    def __closest_match(word: str, choices) -> str | None:
+    def __closest_match(word: str, choices) -> str or None:
         """Retorna a escolha mais próxima da palavra, se a pontuação for alta o suficiente."""
         best_match, score = process.extractOne(word, choices.keys())
         # print(word, best_match, score)

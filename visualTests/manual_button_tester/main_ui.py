@@ -3,7 +3,7 @@ from __future__ import annotations
 import tkinter as tk
 from tkinter import ttk
 
-from requestRelatedTests.calls.sendHttpCalls import sendTwilioRequest, convertResponseToUtf8
+from request_tests.calls.sendHttpCalls import sendTwilioRequest, convertResponseToUtf8
 from utils.timingDecorator import timingDecorator
 from visualTests.manual_button_tester.core_components.option_frame import OptionFrame
 

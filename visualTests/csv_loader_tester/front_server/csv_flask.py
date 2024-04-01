@@ -3,7 +3,7 @@ import fix_imports
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 from werkzeug.exceptions import BadRequest
-from requestRelatedTests.calls.sendHttpCalls import sendFirebaseLessRequest
+from request_tests.calls.sendHttpCalls import sendFirebaseLessRequest
 from utils.corsBlocker import createResponseWithAntiCorsHeaders
 
 app = Flask(__name__)

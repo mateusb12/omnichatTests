@@ -1,6 +1,0 @@
-Stage;Input;ExpectedOutput
-_welcome;Oii;Olá! Bem-vindo à Pizza do Bill! Funcionamos das 17h às 22h.\n Cardápio de pizzas:\n- Calabresa - R$17.50\n- Frango - R$18.90\n- Portuguesa - R$13.99\n- Margherita - R$15.50\n- Quatro Queijos - R$16.90\n- Pepperoni - R$19.99\n. \nQual pizza você vai querer?
-_pizzaChoice;Quero uma pizza meio calabresa meio margherita e outra meia frango meia quatro queijos;Perfeito! Meia calabresa margherita e meia frango quatro queijos. Você vai querer alguma bebida?
-_drinkConfirmation;Sim, quero duas bebidas;Cardápio de bebidas:- Coca-cola - R$5.99- Guaraná - R$4.99- Suco de laranja - R$6.50
-_drinkChoice;Quero 1 coca e um guaraná;Vai ser 1 x Pizza meio calabresa meio margherita (R$16.50), 1 x Pizza meia frango meia quatro queijos (R$17.90), 1 x Coca-cola (R$5.99) e 1 x Guaraná (R$4.99), totalizando R$45.38. Qual vai ser a forma de pagamento? (pix/cartão/dinheiro)
-_paymentChoice;Dinheiro;Tudo certo então! O pedido estará indo para a sua casa em breve!
